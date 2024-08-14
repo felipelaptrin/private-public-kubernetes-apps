@@ -1,0 +1,8 @@
+provider:
+  name: vultr
+env:
+  - name: VULTR_API_KEY
+    valueFrom:
+      secretKeyRef:
+        key: apiKey
+        name: vultr-credentials
