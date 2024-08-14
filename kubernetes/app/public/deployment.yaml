@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: public-app
+  name: public-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: public-app
+  template:
+    metadata:
+      labels:
+        app: public-app
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        command:
+          - sh
+          - "-c"
+          - "echo 'Hello, from public-app' > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"
