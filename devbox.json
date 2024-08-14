@@ -1,11 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.12.0/.schema/devbox.schema.json",
   "packages": [
-    "tailscale@1.70.0",
     "kubernetes-helm@3.15.3",
     "kubectl@1.30.2",
-    "civo@1.0.88",
-    "awscli2@2.17.13",
     "opentofu@1.7.1",
     "vultr-cli@3.3.1",
     "kfilt@0.0.8"
