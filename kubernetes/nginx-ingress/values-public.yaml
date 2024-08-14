@@ -1,0 +1,7 @@
+controller:
+  electionID: ingress-controller-leader-public
+  ingressClass: nginx-public
+  ingressClassResource:
+    name: nginx-public
+    controllerValue: k8s.io/public-ingress-nginx
+

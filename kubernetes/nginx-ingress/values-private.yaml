@@ -1,0 +1,15 @@
+controller:
+  electionID: ingress-controller-leader-private
+  ingressClass: nginx-private
+  ingressClassResource:
+    name: nginx-private
+    controllerValue: k8s.io/private-ingress-nginx
+
+  service:
+    external:
+      enabled: false
+    internal:
+      enabled: true
+      annotations:
+        service.beta.kubernetes.io/vultr-loadbalancer-vpc: "true"
+        service.beta.kubernetes.io/vultr-loadbalancer-backend-protocol: "http"
