@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.12.0/.schema/devbox.schema.json",
+  "packages": [
+    "tailscale@1.70.0",
+    "kubernetes-helm@3.15.3",
+    "kubectl@1.30.2",
+    "civo@1.0.88",
+    "awscli2@2.17.13",
+    "opentofu@1.7.1",
+    "vultr-cli@3.3.1",
+    "kfilt@0.0.8"
+  ],
+  "shell": {
+    "scripts": {
+      "reflector": [
+        "kustomize build kubernetes/reflector --enable-helm | kubectl apply -f -"
+      ],
+      "nginx-ingress": [
+        "kustomize build kubernetes/nginx-ingress --enable-helm | kubectl apply -f -"
+      ],
+      "cert-manager": [
+        "kustomize build kubernetes/cert-manager --enable-helm | kfilt -i kind=CustomResourceDefinition | kubectl apply -f -",
+        "kustomize build kubernetes/cert-manager --enable-helm | kfilt -i kind=CustomResourceDefinition | kubectl wait --for condition=established --timeout=60s -f -",
+        "kustomize build kubernetes/cert-manager --enable-helm | kubectl apply -f -"
+      ],
+      "external-dns": [
+        "kustomize build kubernetes/external-dns --enable-helm | kubectl apply -f -"
+      ],
+      "public-app": [
+        "kubectl apply -k kubernetes/app/public"
+      ],
+      "private-app": [
+        "kubectl apply -k kubernetes/app/private"
+      ]
+    }
+  }
+}
